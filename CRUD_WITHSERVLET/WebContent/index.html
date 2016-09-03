@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Page</title>
+</head>
+<body>
+<div><h3><a href="index.html">CRUD With Servlet</a></h3></div>
+<div>
+<br>
+<h5>User Details</h5>
+<form id="form1" action="Save" method="post" >
+<table>
+	<tr> 
+		<td> Name: </td>
+		<td> <input type="text" name="name"> </td>
+	</tr>
+	<tr>
+		<td> Password: </td>
+		<td> <input type="password" name="pass" > </td>
+	</tr>
+	<tr> 
+		<td> Email: </td>
+		<td> <input type="text" name="emailid"> </td>
+	</tr>
+	<tr> 
+		<td> Address: </td>
+		<td> <input type="text" name="address"> </td>
+	</tr>
+	<tr>
+	</tr>
+	<tr> 
+		<td colspan="1"><input type="submit" value="Save User">  </td>
+		<td colspan="1"><input type="reset" value="Reset"></td>
+	</tr>
+	<tr>
+	<td colspan="1"><a href ="View"><input type="button" value="View User"></a> </td>
+	</tr>
+	
+</table>
+</form>
+</div>
+<br>
+<div>
+<form action="Upload" method="post" name="fileupload" enctype="multipart/form-data">
+Select File: <input type="text" name="filename"><br><br>
+<input type="submit" value="Upload File">
+</form>
+</div>
+<br>
+<div>
+<form action="SendMail" method="post" onSubmit="return validateForm()" name="mailform" >
+<table>
+<tr>
+	<td>Name:</td><td><input type="text" name="name"></td>
+</tr>
+<tr>
+	<td>Email id:</td><td><input type="email" name="emailid"></td>
+</tr>
+<tr>
+	<td align="justify">Message:</td><td><textarea rows="10" cols="17"  name="message" id="message" required></textarea></td>
+</tr>
+<tr><td> <input type="submit" value="Submit"> </td>
+</tr>
+</table>
+</form>
+</div>
+<script>
+function validateForm(
+	var name = document.forms["mailform"]["name"].value;
+	var email = document.forms["mailform"]["emailid"].value;
+//	var msg = document.forms["mailform"]["message"].value;
+//var msg = document.mailform.message.value;
+alert(msg);
+	
+	if (name==null || name=="" ){
+		alert("Name cannot be blank or empty");
+		return false;
+		}
+	else if(email==null || email=="" || email.indexof("@") == -1 ){
+		alert("Email cannot be blank or empty or invalid");
+		return false;
+	}
+	else if (msg== "" or msg==null ){
+		alert("Message cannot be blank or empty");
+		document.forms["mailform"]["message"].focus();
+		return false;
+		}
+	else 
+		return true;
+	
+}
+
+function trimfield(str) 
+{ 
+    return str.replace(/^\s+|\s+$/g,''); 
+}
+
+</script>
+
+</body>
+</html>

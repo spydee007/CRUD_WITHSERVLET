@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+</head>
+<body>
+<div> 
+<h3><a href="index.html">Login Example Using JSP Servlet</a></h3>
+<br>
+</div>
+<div> 
+<form action="LoginPage" method="post">
+<table>
+<tr>
+<td>User Id
+<td><input type="text" name="user">
+</tr>
+<tr>
+<td>Password
+<td><input type="password" name="pass">
+</tr>
+<tr>
+</tr>
+<tr>
+<td><input type="reset" value="Reset">
+<td><input type="submit" value="Login">
+</tr>
+</table>
+</form>
+</div>
+<div>
+<br>
+<form action="Test" method="get" >
+Enter Name <input type="text" value="enter name" name="name">
+<input type="submit" value="Submit">
+</form>
+</div>
+<br>
+<br>
+<div> 
+<form action="TestingJs" method="post">
+<button type="submit" value="Submit">Click Me!</button>
+</form>
+<br>
+<script type="text/javascript">
+function forward(){
+	//document.location.href="TestingJs";
+	document.location.assign = "TestingJs"
+}
+
+
+</script>
+<br>
+<button type="button" onClick="return forward()">Test Button</button>
+</div>
+</body>
+</html>
