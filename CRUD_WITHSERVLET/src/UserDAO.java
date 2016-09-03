@@ -29,13 +29,13 @@ public class UserDAO {
 		try{
 			Connection c = getConnection();
 			DatabaseMetaData dbm = c.getMetaData();
-		//	System.out.println(dbm.getDatabaseProductName()+dbm.getDatabaseProductVersion()+dbm.getUserName()+dbm.getURL()+dbm.getDriverName()+dbm.getDefaultTransactionIsolation());
+			System.out.println(dbm.getDatabaseProductName()+dbm.getDatabaseProductVersion()+dbm.getUserName()+dbm.getURL()+dbm.getDriverName()+dbm.getDefaultTransactionIsolation());
 //			PreparedStatement p = c.prepareStatement("select nvl(max(id),0)+1 from dev_user");
 			PreparedStatement p = c.prepareStatement("select getid from dual");
 			ResultSet rs = p.executeQuery();
 			rs.next();
 			ResultSetMetaData rsmd = rs.getMetaData();
-			//System.out.println(rsmd.getColumnCount()+rsmd.getCatalogName(1)+rsmd.getColumnType(1)+rsmd.getColumnType(1));
+			System.out.println(rsmd.getColumnCount()+rsmd.getCatalogName(1)+rsmd.getColumnType(1)+rsmd.getColumnType(1));
 			u.setId(rs.getInt(1));
 			p.close();
 			logger.info(p);
