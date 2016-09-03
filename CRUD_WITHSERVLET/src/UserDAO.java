@@ -13,6 +13,7 @@ public class UserDAO {
 		Connection c = null;
 		try{
 			logger.info("Connecting with DB");
+			System.out.println("Testing");
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			c = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL" , "U_DEV" , "U_DEV");
 		}
