@@ -1,18 +1,23 @@
 import java.io.*;
+
 import java.sql.*;
 import java.util.*;
 
+import org.apache.log4j.Logger;
+
 @SuppressWarnings("unused")
 public class UserDAO {
-	
+	static Logger logger = Logger.getLogger(UserDAO.class.getName());
 	
 	public static Connection getConnection(){
 		Connection c = null;
 		try{
+			logger.info("Connecting with DB");
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			c = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL" , "U_DEV" , "U_DEV");
 		}
 		catch(Exception e){
+			logger.debug("Error occured "+e.getMessage());
 		e.printStackTrace();	
 		}	
 		return c;
@@ -23,16 +28,17 @@ public class UserDAO {
 		try{
 			Connection c = getConnection();
 			DatabaseMetaData dbm = c.getMetaData();
-			System.out.println(dbm.getDatabaseProductName()+dbm.getDatabaseProductVersion()+dbm.getUserName()+dbm.getURL()+dbm.getDriverName()+dbm.getDefaultTransactionIsolation());
+		//	System.out.println(dbm.getDatabaseProductName()+dbm.getDatabaseProductVersion()+dbm.getUserName()+dbm.getURL()+dbm.getDriverName()+dbm.getDefaultTransactionIsolation());
 //			PreparedStatement p = c.prepareStatement("select nvl(max(id),0)+1 from dev_user");
 			PreparedStatement p = c.prepareStatement("select getid from dual");
 			ResultSet rs = p.executeQuery();
 			rs.next();
 			ResultSetMetaData rsmd = rs.getMetaData();
-			System.out.println(rsmd.getColumnCount()+rsmd.getCatalogName(1)+rsmd.getColumnType(1)+rsmd.getColumnType(1));
+			//System.out.println(rsmd.getColumnCount()+rsmd.getCatalogName(1)+rsmd.getColumnType(1)+rsmd.getColumnType(1));
 			u.setId(rs.getInt(1));
 			p.close();
-			
+			logger.info(p);
+			logger.info("Testing logger");
 			CallableStatement cs = c.prepareCall("{call p_getname (?,?)}");
 			cs.setInt(1, 2);
 			cs.registerOutParameter(2, Types.VARCHAR );
@@ -51,15 +57,15 @@ public class UserDAO {
 			p1.close();
 			
 			
-			PreparedStatement pi = c.prepareStatement("insert into imgtab(img_name , img_data) values(?,?)");
-			pi.setString(1, "img1");
-			File f1 = new File("D:\\new.txt");
-			//InputStream fin = new FileInputStream("D:\\new.txt");
-			FileReader fr = new FileReader(f1);
-//			pi.setBinaryStream(2,fin , (int)f1.length() );
-			pi.setCharacterStream(3, fr, f1.length());
-			int result = pi.executeUpdate();
-			System.out.println(result);
+//			PreparedStatement pi = c.prepareStatement("insert into imgtab(img_name , img_data) values(?,?)");
+//			pi.setString(1, "img1");
+//			File f1 = new File("D:\\new.txt");
+//			//InputStream fin = new FileInputStream("D:\\new.txt");
+//			FileReader fr = new FileReader(f1);
+////			pi.setBinaryStream(2,fin , (int)f1.length() );
+//			pi.setCharacterStream(3, fr, f1.length());
+//			int result = pi.executeUpdate();
+//			System.out.println(result);
 			
 			//fin.close();
 			c.close();
