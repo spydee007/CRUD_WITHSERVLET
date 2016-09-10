@@ -12,6 +12,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/User Lib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Oracle_JDBC"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/User_Lib_Tools"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
